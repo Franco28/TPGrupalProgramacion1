@@ -89,7 +89,11 @@ public class Tp1Ejercicio1 {
 			if (nombre.isBlank() || nombre.isEmpty()) {
 				System.out.println("\nEl nombre es requerido.\n");
 				datosErroneos = true;
+			} else {
+				datosErroneos = false;
+				
 			}
+			
 		} while (datosErroneos); 
 		
 		// INGRESE APELLIDO
@@ -100,7 +104,10 @@ public class Tp1Ejercicio1 {
 			if (apellido.isBlank() || apellido.isEmpty()) {
 				System.out.println("\nEl apellido es requerido.\n");
 				datosErroneos = true;
+			} else {
+				datosErroneos = false;
 			}
+			
 			
 		} while (datosErroneos); 
 		
