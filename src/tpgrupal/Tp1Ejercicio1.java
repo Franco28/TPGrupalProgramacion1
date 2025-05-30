@@ -47,7 +47,7 @@ public class Tp1Ejercicio1 {
 				
 				// validamos que el domicilio no este vacio
 				if (domicilio.isBlank() || domicilio.isEmpty()) {
-					System.out.println("ERROR:: El domicilio es requerido, no puede estar vacio.");
+					System.out.println("ERROR: El domicilio es requerido, no puede estar vacio.");
 					datosErroneos = true;
 				} else {
 					datosErroneos = false;
