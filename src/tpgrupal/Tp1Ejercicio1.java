@@ -12,7 +12,7 @@ public class Tp1Ejercicio1 {
 		 * - Franco Mato
 		 * 
 		 * El gobierno de la Ciudad de Buenos Aires realiza una encuesta en casas de familia. 
-		 * De cada familia conoce: domicilio, tipo de vivienda (‘C’:casa, ‘D’:departamento), 
+		 * De cada familia se conoce: domicilio, tipo de vivienda (‘C’:casa, ‘D’:departamento), 
 		 * y cantidad de integrantes. 
 		 * De cada integrante de la familia se conoce: nombre y apellido, edad, sexo (‘F’, ‘M’), 
 		 * nivel de estudios alcanzados (‘N’: no posee, ‘P’: primario, ‘S’: secundario, ‘T’: terciario, ‘U’: universitario), 
@@ -47,7 +47,7 @@ public class Tp1Ejercicio1 {
 				
 				// validamos que el domicilio no este vacio
 				if (domicilio.isBlank() || domicilio.isEmpty()) {
-					System.out.println("El domicilio es requerido.");
+					System.out.println("ERROR:: El domicilio es requerido, no puede estar vacio.");
 					datosErroneos = true;
 				} else {
 					datosErroneos = false;
@@ -69,27 +69,26 @@ public class Tp1Ejercicio1 {
 					
 					// validamos tipo de vivienda
 					if ((tipoVivienda != 'C' && tipoVivienda != 'D')) {
-						System.out.println("Opcion " + tipoVivienda + " de tipo de vivienda incorrecta");
+						System.out.println("ERROR: el tipo de vivienda es incorrecto, deben ser C o D");
 						datosErroneos = true;
 					} else {
 						datosErroneos = false;
 					}
 				} else {
-					System.out.println("\nEl tipo de vivienda es requerido.\n");
+					System.out.println("\nERROR: El tipo de vivienda es requerido, no puede ser vacio.\n");
 					datosErroneos = true;
 				}
 			} while (datosErroneos); 
 			
 			// INGRESO CANTIDAD DE INTEGRANTES
 			do {
-			    System.out.print("\nIngrese la cantidad de integrantes: ");
-			
+			    System.out.print("\nIngrese la cantidad de integrantes: ");			
+			   
 			    if (lector.hasNextInt()) {
-			        cantidadIntegrantes = lector.nextInt();
-			        lector.nextLine(); // descartamos el buffer hasta el siguiente nextLine
+			        cantidadIntegrantes = Integer.parseInt(lector.nextLine());
 			        datosErroneos = false;
 			    } else {
-			        System.out.println("ERROR: Debe ingresar una cantidad valida.");
+			        System.out.println("ERROR: Debe ingresar un numero.");
 			        lector.nextLine(); // descarto el ingreso invalido
 			        datosErroneos = true;
 			    }		
@@ -116,7 +115,7 @@ public class Tp1Ejercicio1 {
 						nombre = lector.nextLine();
 						
 						if (nombre.isBlank() || nombre.isEmpty()) {
-							System.out.println("El nombre es requerido.");
+							System.out.println("ERROR: El nombre es requerido, no puede ser vacio.");
 							datosErroneos = true;
 						} else {
 							datosErroneos = false;				
@@ -129,7 +128,7 @@ public class Tp1Ejercicio1 {
 						apellido = lector.nextLine();
 						
 						if (apellido.isBlank() || apellido.isEmpty()) {
-							System.out.println("El apellido es requerido.");
+							System.out.println("ERROR: El apellido es requerido, no puede ser vacio.");
 							datosErroneos = true;
 						} else {
 							datosErroneos = false;
@@ -141,11 +140,10 @@ public class Tp1Ejercicio1 {
 						System.out.println("\nIngrese la edad: ");
 					
 					    if (lector.hasNextInt()) {
-							edad = lector.nextInt();
-					        lector.nextLine(); // descartamos el buffer hasta el siguiente nextLine
+							edad = Integer.parseInt(lector.nextLine());
 					        datosErroneos = false;
 					    } else {
-					        System.out.println("ERROR: Debe ingresar una edad valida.");
+					        System.out.println("ERROR: Debe ingresar un numero para la edad.");
 					        lector.nextLine(); // descarto el ingreso invalido
 					        datosErroneos = true;
 					    }		
@@ -166,13 +164,13 @@ public class Tp1Ejercicio1 {
 							
 							// validamos tipo de sexo
 							if ((sexo != 'F' && sexo != 'M')) {
-								System.out.println("Opcion " + sexo + " de tipo de sexo incorrecto");
+								System.out.println("ERROR: tipo de sexo incorrecto, debe ser F o M");
 								datosErroneos = true;
 							} else {
 								datosErroneos = false;
 							}
 						} else {
-							System.out.println("El tipo de sexo es requerido.");
+							System.out.println("ERROR: El tipo de sexo es requerido, no puede estar vacio.");
 							datosErroneos = true;
 						}
 					} while (datosErroneos); 			
@@ -199,13 +197,13 @@ public class Tp1Ejercicio1 {
 								nivelEstudios != 'S' && 
 								nivelEstudios != 'T' && 
 								nivelEstudios != 'U') {
-								System.out.println("Opcion " + nivelEstudios + " de nivel de estudios incorrecta");
+								System.out.println("ERROR: el nivel de estudios es incorrecto, deben ser N, P, S, T o U.");
 								datosErroneos = true;
 							} else {
 								datosErroneos = false;
 							}
 						} else {
-							System.out.println("El nivel de estudios es requerido.");
+							System.out.println("ERROR: El nivel de estudios es requerido, no puede ser vacio.");
 							datosErroneos = true;
 						}
 					} while (datosErroneos); 	
@@ -225,13 +223,13 @@ public class Tp1Ejercicio1 {
 							
 							// validamos tipo de indicador
 							if ((indicador != 'I' && indicador != 'C')) {
-								System.out.println("Opcion " + indicador + " de indicador incorrecta");
+								System.out.println("ERROR: tipo de indicador incorrecto, deben ser I o C");
 								datosErroneos = true;
 							} else {
 								datosErroneos = false;
 							}
 						} else {
-							System.out.println("El tipo de indicador es requerido.");
+							System.out.println("ERROR: El tipo de indicador es requerido, no puede estar vacio.");
 							datosErroneos = true;
 						}
 					} while (datosErroneos); 	
