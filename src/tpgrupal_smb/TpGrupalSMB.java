@@ -1,8 +1,8 @@
-package tpgrupal;
+package tpgrupal_smb;
 
 import java.util.Scanner;
 
-public class Tp1Ejercicio1 {
+public class TpGrupalSMB {
 
 	public static void main(String[] args) {
 
