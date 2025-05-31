@@ -29,15 +29,15 @@ public class Tp1Ejercicio1 {
 		String tipoSexo, nivelEstudiosString, indicadorString;
 		String domicilioFamiliaMayorDepto = "";
 
-		int edad = 0, cantidadIntegrantes = 0, integrantes = 0, vuelta = 1, integranteVuelta = 1;
-
-		int cantidadNivelPrimario = 0, cantidadAnalfabetos = 0, cantIntegranteDptosFlia = -99999;
-
 		char tipoVivienda = 0, sexo, nivelEstudios = 0, indicador;
 
-		double porcentajeAnalfabetos, edadPromedioFlia, edadPromedioCiudad;
+		int edad = 0, cantidadIntegrantes = 0, integrantes = 0, vuelta = 1, integranteVuelta = 1;
+		int cantidadNivelPrimario = 0, cantidadAnalfabetos = 0, cantIntegranteDptosFlia = -99999;
+		int cantidadNivelAlcIncompleto = 0, cantSexoFem = 0, cantSexoMasc = 0;
+
+		double porcentajeAnalfabetos, edadPromedioFlia, edadPromedioCiudad, porcSexoFem, porcSexoMasc;
 		int sumaEdadesFlia = 0, sumaEdadCiudad = 0;
-		
+
 		boolean datosErroneos = false, continuar = false;
 
 		do {
@@ -184,6 +184,18 @@ public class Tp1Ejercicio1 {
 							} else {
 								datosErroneos = false;
 							}
+
+							switch (sexo) {
+							case 'F':
+								cantSexoFem++;
+								break;
+							case 'M':
+								cantSexoMasc++;
+								break;
+							default:
+								break;
+							}
+
 						} else {
 							System.out.println("ERROR: El tipo de sexo es requerido, no puede estar vacio.");
 							datosErroneos = true;
@@ -246,13 +258,18 @@ public class Tp1Ejercicio1 {
 											|| nivelEstudios == 'T' || nivelEstudios == 'U') {
 										cantidadNivelPrimario++;
 									}
+
+									if ((nivelEstudios == 'P' || nivelEstudios == 'S' || nivelEstudios == 'T'
+											|| nivelEstudios == 'U') && indicador == 'I') {
+										cantidadNivelAlcIncompleto++;
+									}
 								}
 							} else {
 								System.out.println("ERROR: El tipo de indicador es requerido, no puede estar vacio.");
 								datosErroneos = true;
 							}
 						} while (datosErroneos);
-					}							
+					}
 
 					integranteVuelta++;
 					integrantes++; // incrementamos el integrante (cant. personas)
@@ -262,21 +279,30 @@ public class Tp1Ejercicio1 {
 			}
 
 			sumaEdadCiudad += sumaEdadesFlia;
-			
+
 			vuelta++; // incrementamos la vuelta
 		} while (continuar);
 
 		lector.close();
-				
+
 		porcentajeAnalfabetos = ((double) cantidadAnalfabetos / integrantes) * 100;
-		//edadPromedioFlia = (());		
-		//edadPromedioCiudad = (());
-	
+		edadPromedioFlia = ((double) (sumaEdadesFlia / integrantes));
+		edadPromedioCiudad = ((double) (sumaEdadCiudad / integrantes));
+		porcSexoFem = ((double) (cantSexoFem / integrantes) * 100);
+		porcSexoMasc = ((double) (cantSexoMasc / integrantes) * 100);		
+		
 		System.out.println("\n-------------------------------------------------------");
 		System.out.println("* Cantidad encuestados con estudios primarios completos: " + cantidadNivelPrimario);
 		System.out.println("* Porcentaje de analfabetos en la ciudad: %" + porcentajeAnalfabetos);
-		System.out.println("* El domicilio con la mayor cantidad de integrantes que viven en Depto. es: " + domicilioFamiliaMayorDepto + " con un total de " + cantIntegranteDptosFlia + " integrantes.");
-		//System.out.println("* Porcentaje de analfabetos en la ciudad: %" + porcentajeAnalfabetos);
+		System.out.println("* El domicilio con la mayor cantidad de integrantes que viven en Depto. es: "
+				+ domicilioFamiliaMayorDepto + " con un total de " + cantIntegranteDptosFlia + " integrantes.");
+		System.out.println("* Edad promedio familia: " + edadPromedioFlia);
+		System.out.println("* Edad promedio ciudad: " + edadPromedioCiudad);
+		System.out.println("* Cantidad de encuestados en cada tipo de nivel de estudios alcanzados incompletos: "
+				+ cantidadNivelAlcIncompleto);
+		System.out.println("* Porcentaje de encuestados de sexo femenino: " + porcSexoFem);
+		System.out.println("* Porcentaje de encuestados de sexo masculino: " + porcSexoMasc);
+
 		System.out.println("-------------------------------------------------------");
 	}
 }
