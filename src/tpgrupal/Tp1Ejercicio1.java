@@ -9,18 +9,25 @@ public class Tp1Ejercicio1 {
 		/*
 		 * Integrantes: - Lara Belgorodsky - Romina Solis - Franco Mato
 		 * 
-		 * El gobierno de la Ciudad de Buenos Aires realiza una encuesta en casas de
-		 * familia. De cada familia se conoce: domicilio, tipo de vivienda (‘C’:casa,
-		 * ‘D’:departamento), y cantidad de integrantes. De cada integrante de la
-		 * familia se conoce: nombre y apellido, edad, sexo (‘F’, ‘M’), nivel de
-		 * estudios alcanzados (‘N’: no posee, ‘P’: primario, ‘S’: secundario, ‘T’:
+		 * El gobierno de la Ciudad de Buenos Aires realiza una encuesta en casas de familia. 
+		 * De cada familia se conoce: domicilio, tipo de vivienda (‘C’:casa,
+		 * ‘D’:departamento), y cantidad de integrantes. 
+		 * De cada integrante de la familia se conoce: nombre y apellido, edad, sexo (‘F’, ‘M’), 
+		 * nivel de estudios alcanzados (‘N’: no posee, ‘P’: primario, ‘S’: secundario, ‘T’:
 		 * terciario, ‘U’: universitario), y un indicador (‘I’:incompleto, ‘C’:
-		 * completo) que se refiere al ítem anterior. Los datos finalizan cuando la
-		 * cantidad de integrantes sea igual a cero. Aclaraciones: 1. Todos los valores
-		 * ingresados deben ser validados, por lo cual no se permiten valores
-		 * incorrectos. Mostrar al usuario cuales son los valores permitidos 2. Pueden
-		 * escoger la estructura repetitiva que les convenga o con la que se sientan
-		 * cómodo.
+		 * completo) que se refiere al ítem anterior. 
+		 * Los datos finalizan cuando la cantidad de integrantes sea igual a cero. 
+		 * Aclaraciones: 
+		 * 1. Todos los valores ingresados deben ser validados, por lo cual no se permiten 
+		 * valores incorrectos. Mostrar al usuario cuales son los valores permitidos 2.
+		 * 
+		 * Se pide emitir un listado con los resultados:
+		 * 1. La cantidad de los encuestados que hayan completado los estudios primarios.
+		 * 2. El porcentaje de analfabetismo en la ciudad (se considera analfabetos a los mayores de 10 años que no posean estudios).
+		 * 3. El domicilio de la familia con mayor cantidad de integrantes que viven en departamento.
+		 * 4. Edad promedio de cada familia y de la ciudad.
+		 * 5. Cantidad de encuestados en cada tipo de nivel de estudios alcanzados incompletos.
+		 * 6. Porcentaje de encuestados de sexo femenino y masculino.		 
 		 */
 
 		Scanner lector = new Scanner(System.in);
@@ -29,14 +36,15 @@ public class Tp1Ejercicio1 {
 		String tipoSexo, nivelEstudiosString, indicadorString;
 		String domicilioFamiliaMayorDepto = "";
 
-		char tipoVivienda = 0, sexo, nivelEstudios = 0, indicador;
-
+		char sexo, indicador, tipoVivienda = 0, nivelEstudios = 0;
+		
 		int edad = 0, cantidadIntegrantes = 0, integrantes = 0, vuelta = 1, integranteVuelta = 1;
 		int cantidadNivelPrimario = 0, cantidadAnalfabetos = 0, cantIntegranteDptosFlia = -99999;
 		int cantidadNivelAlcIncompleto = 0, cantSexoFem = 0, cantSexoMasc = 0;
-
-		double porcentajeAnalfabetos, edadPromedioFlia, edadPromedioCiudad, porcSexoFem, porcSexoMasc;
 		int sumaEdadesFlia = 0, sumaEdadCiudad = 0;
+
+		double porcentajeAnalfabetos = 0, edadPromedioFlia = 0, edadPromedioCiudad = 0;
+		double porcSexoFem = 0, porcSexoMasc = 0;
 
 		boolean datosErroneos = false, continuar = false;
 
@@ -286,23 +294,20 @@ public class Tp1Ejercicio1 {
 		lector.close();
 
 		porcentajeAnalfabetos = ((double) cantidadAnalfabetos / integrantes) * 100;
-		edadPromedioFlia = ((double) (sumaEdadesFlia / integrantes));
-		edadPromedioCiudad = ((double) (sumaEdadCiudad / integrantes));
-		porcSexoFem = ((double) (cantSexoFem / integrantes) * 100);
-		porcSexoMasc = ((double) (cantSexoMasc / integrantes) * 100);		
-		
+		edadPromedioFlia = ((double) sumaEdadesFlia / integrantes);
+		edadPromedioCiudad = ((double) sumaEdadCiudad / integrantes);
+		porcSexoFem = ((double) cantSexoFem / integrantes) * 100;
+		porcSexoMasc = ((double) cantSexoMasc / integrantes) * 100;
+
 		System.out.println("\n-------------------------------------------------------");
 		System.out.println("* Cantidad encuestados con estudios primarios completos: " + cantidadNivelPrimario);
 		System.out.println("* Porcentaje de analfabetos en la ciudad: %" + porcentajeAnalfabetos);
-		System.out.println("* El domicilio con la mayor cantidad de integrantes que viven en Depto. es: "
-				+ domicilioFamiliaMayorDepto + " con un total de " + cantIntegranteDptosFlia + " integrantes.");
+		System.out.println("* El domicilio con la mayor cantidad de integrantes que viven en Depto. es: " + domicilioFamiliaMayorDepto + " con un total de " + cantIntegranteDptosFlia + " integrantes.");
 		System.out.println("* Edad promedio familia: " + edadPromedioFlia);
 		System.out.println("* Edad promedio ciudad: " + edadPromedioCiudad);
-		System.out.println("* Cantidad de encuestados en cada tipo de nivel de estudios alcanzados incompletos: "
-				+ cantidadNivelAlcIncompleto);
-		System.out.println("* Porcentaje de encuestados de sexo femenino: " + porcSexoFem);
-		System.out.println("* Porcentaje de encuestados de sexo masculino: " + porcSexoMasc);
-
+		System.out.println("* Cantidad de encuestados en cada tipo de nivel de estudios alcanzados incompletos: " + cantidadNivelAlcIncompleto);
+		System.out.println("* Porcentaje de encuestados de sexo femenino: %" + porcSexoFem);
+		System.out.println("* Porcentaje de encuestados de sexo masculino: %" + porcSexoMasc);
 		System.out.println("-------------------------------------------------------");
 	}
 }
